@@ -42,7 +42,6 @@ module.exports = function (grunt) {
             js: {
                 src: [
                     'app/js/figlet.js',
-                    'app/js/jquery.figlet.js',
                     'app/js/index.js',
                 ],
                 dest: 'build/js/app.min.js'

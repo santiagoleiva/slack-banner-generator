@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
     var Figlet = (typeof exports !== "undefined" ? exports : window).Figlet = {
         fonts: {},
 
@@ -62,6 +62,14 @@
                 }
                 fn(result);
             });
+        },
+
+        loadFont: function (name, fn) {
+            $.ajax({
+                url: "fonts/" + name + ".flf",
+                dataType: "text",
+                success: fn
+            });
         }
     };
-})();
+})(jQuery);
