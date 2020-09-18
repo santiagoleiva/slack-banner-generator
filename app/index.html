@@ -2,30 +2,24 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slack banner generator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slack banner generator</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-    <!-- build:css css/styles.min.css -->
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- /build -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <!-- build:js js/app.min.js -->
-    <script src="js/figlet.js"></script>
-    <script src="js/index.js"></script>
-    <!-- /build -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+	<!-- build:css css/styles.min.css -->
+	<link rel="stylesheet" href="css/styles.css">
+	<!-- /build -->
 </head>
 
 <body>
 	<section class="hero is-light is-fullheight">
 		<div class="hero-body">
-			<div class="container">
+			<div class="container" id="banner-app">
 				<div class="card">
 					<header class="card-header">
 						<p class="card-header-title">
-							Slack banner generator
+							{{ title }}
 						</p>
 					</header>
 					<div class="card-content">
@@ -33,20 +27,19 @@
 							<form id="input-form">
 								<div class="field">
 									<div class="control">
-										<input type="text" class="input" id="input-text" maxlength="10" value=""
-											   placeholder="Text"/>
+										<input type="text" class="input" id="input-text" maxlength="10" placeholder="Text" v-model="input" v-on:keyup="handleInputChange"/>
 									</div>
 								</div>
 
 								<div class="field">
 									<div class="control">
-										<textarea class="textarea" id="output" readonly></textarea>
+										<textarea class="textarea" id="output" v-model="output" readonly></textarea>
 									</div>
 								</div>
 
 								<div class="field is-grouped is-grouped-centered">
 									<div class="control">
-										<button type="button" class="button is-dark" id="btn-copy" disabled>Copy</button>
+										<button type="button" class="button is-dark" id="btn-copy" :disabled="!output">Copy</button>
 									</div>
 								</div>
 							</form>
@@ -62,6 +55,13 @@
 			</div>
 		</div>
 	</section>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<!-- build:js js/app.min.js -->
+	<script src="js/figlet.js"></script>
+	<script src="js/index.js"></script>
+	<!-- /build -->
 </body>
 
 </html>

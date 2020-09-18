@@ -1,33 +1,21 @@
-$(document).ready(function () {
-    $("#input-text").keyup(function () {
-        if ($(this).val()) {
-            writeOutput(" " + $(this).val());
-        } else {
-            clearOutput();
+var app = new Vue({
+    el: "#banner-app",
+    data: {
+        title: "Slack banner generator",
+        input: "",
+        output: ""
+    },
+    methods: {
+        handleInputChange: function () {
+            var newOutput = "";
+
+            if (this.input) {
+                Figlet.write(this.input, "default-font", function (output) {
+                    newOutput = " " + output;
+                })
+            }
+
+            this.output = newOutput;
         }
-    });
-
-    $("#btn-copy").click(function () {
-        $("#output").select();
-        document.execCommand("copy");
-        $("#notification-copied").fadeIn('fast', function () {
-            $(this).fadeToggle(4000);
-        });
-    });
-
-    $("#input-form").submit(function () {
-        return false;
-    });
+    }
 });
-
-function writeOutput(value) {
-    Figlet.write(value, "default-font", function (result) {
-        $("#output").text(result);
-        $("#btn-copy").attr("disabled", false);
-    });
-}
-
-function clearOutput() {
-    $("#output").html("");
-    $("#btn-copy").attr("disabled", true);
-}
