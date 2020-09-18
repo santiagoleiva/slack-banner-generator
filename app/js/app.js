@@ -4,6 +4,8 @@ var textChar = "#";
 var defaultBGEmoji = ":white_square:";
 var defaultTextEmoji = ":black_square:";
 
+var defaultFont = "hash-default-font";
+
 new Vue({
     el: "#banner-app",
     data: {
@@ -16,21 +18,7 @@ new Vue({
     },
     methods: {
         handleInputChange: function () {
-            var newOutput = "";
-
-            if (this.input) {
-                let bgEmoji = this.bgEmoji;
-                let textEmoji = this.textEmoji;
-                var input = " " + this.input;
-
-                Figlet.write(input, "hash-default-font", function (output) {
-                    newOutput += output;
-                    newOutput = newOutput.replaceAll(bgChar, bgEmoji);
-                    newOutput = newOutput.replaceAll(textChar, textEmoji);
-                })
-            }
-
-            this.output = newOutput;
+            this.handleChange(this.input);
         },
         copyOutput: function () {
             document.querySelector("#output").select();
@@ -45,30 +33,25 @@ new Vue({
             this.displayCopiedMessage = false;
         },
         onBGEmojiChange: function () {
-            if (this.bgEmoji) {
-                var bgEmoji = this.bgEmoji;
-                var textEmoji = this.textEmoji;
-                var newOutput = "";
-                var input = " " + this.input;
-                Figlet.write(input, "hash-default-font", function (output) {
-                    newOutput += output;
-                    newOutput = newOutput.replaceAll(bgChar, bgEmoji);
-                    newOutput = newOutput.replaceAll(textChar, textEmoji);
-                });
-                this.output = newOutput;
-            }
+            this.handleChange(this.bgEmoji);
         },
         onTextEmojiChange: function () {
-            if (this.textEmoji) {
+            this.handleChange(this.textEmoji);
+        },
+        handleChange: function (condition) {
+            if (condition) {
+                var newOutput = "";
+
                 var bgEmoji = this.bgEmoji;
                 var textEmoji = this.textEmoji;
-                var newOutput = "";
                 var input = " " + this.input;
-                Figlet.write(input, "hash-default-font", function (output) {
+
+                Figlet.write(input, defaultFont, function (output) {
                     newOutput += output;
                     newOutput = newOutput.replaceAll(bgChar, bgEmoji);
                     newOutput = newOutput.replaceAll(textChar, textEmoji);
                 });
+
                 this.output = newOutput;
             }
         }
