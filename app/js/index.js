@@ -12,6 +12,9 @@ $(document).ready(function () {
     $("#btn-copy").click(function () {
         $("#output").select();
         document.execCommand("copy");
+        $("#notification-copied").fadeIn('fast', function() {
+            $(this).fadeToggle(4000);
+        });
     });
 
     $("#input-form").submit(function (event) {
