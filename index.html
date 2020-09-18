@@ -2,41 +2,42 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slack banner generator</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Slack banner generator</title>
 
-    <script src="http://code.jquery.com/jquery-1.4.2.js"></script>
-    <script src="js/figlet.js"></script>
-    <script src="js/jquery.figlet.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+	<link rel="stylesheet" href="css/styles.css">
 
-    <script>
-        $(document).ready(function () {
-            $("#input-text").keyup(function () {
-                var value = " " + $(this).val();
-                $("#output").figlet(value);
-            });
-
-            $("#btn-generate").click(function(){
-                console.log($("#output").html());
-            });
-
-            $("#input-form").submit(function(event){
-                return false;
-            });
-        });
-    </script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="js/figlet.js"></script>
+	<script src="js/jquery.figlet.js"></script>
+	<script src="js/index.js"></script>
 </head>
 
 <body>
-    <form id="input-form">
-        <div>
-            <input type="text" id="input-text" value="" />
-            <button type="button" id="btn-generate">Generate</button>
-        </div>
-    </form>
+	<div class="container">
+		<form id="input-form">
+			<div class="field">
+				<div class="control">
+					<input type="text" class="input" id="input-text" value="" placeholder="Text" />
+				</div>
+			</div>
 
-    <pre id="output" style="display: none;"></pre>
+			<div class="field">
+				<div class="control">
+					<textarea class="textarea" id="output" readonly></textarea>
+				</div>
+			</div>
+
+			<div class="field is-grouped is-grouped-centered">
+				<div class="control">
+					<button type="button" class="button is-info" id="btn-copy">Copy</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
 </body>
 
 </html>
