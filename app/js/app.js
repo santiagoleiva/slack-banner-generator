@@ -3,7 +3,8 @@ new Vue({
     data: {
         title: "Slack banner generator",
         input: "",
-        output: ""
+        output: "",
+        displayCopiedMessage: false
     },
     methods: {
         handleInputChange: function () {
@@ -22,9 +23,13 @@ new Vue({
             document.querySelector("#output").select();
             try {
                 document.execCommand('copy');
+                this.displayCopiedMessage = true;
             } catch (err) {
                 console.error("Error copying selection");
             }
+        },
+        closeCopiedMessage: function() {
+            this.displayCopiedMessage = false;
         }
     }
 });

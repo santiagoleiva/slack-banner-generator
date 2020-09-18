@@ -2,14 +2,14 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Slack banner generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slack banner generator</title>
 
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
-	<!-- build:css css/styles.min.css -->
-	<link rel="stylesheet" href="css/styles.css">
-	<!-- /build -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.0/css/bulma.min.css">
+    <!-- build:css css/styles.min.css -->
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- /build -->
 </head>
 
 <body>
@@ -18,10 +18,9 @@
 			<div class="container" id="banner-app">
 				<div class="card">
 					<header class="card-header">
-						<p class="card-header-title">
-							{{ title }}
-						</p>
+						<p class="card-header-title">{{ title }}</p>
 					</header>
+
 					<div class="card-content">
 						<div class="content">
 							<form id="input-form">
@@ -33,7 +32,7 @@
 
 								<div class="field">
 									<div class="control">
-										<textarea class="textarea" id="output" v-model="output" readonly></textarea>
+											<textarea class="textarea" id="output" v-model="output" readonly></textarea>
 									</div>
 								</div>
 
@@ -45,13 +44,19 @@
 							</form>
 						</div>
 					</div>
+
+					<transition name="fade" v-on:after-enter="setTimeout(function() { displayCopiedMessage = false; }, 3000);">
+						<footer class="card-footer" v-if="displayCopiedMessage">
+							<div class="card-footer-item notification is-primary is-light" id="notification-copied">
+								<button class="delete" v-on:click="closeCopiedMessage"></button>
+								Copied to clipboard!
+							</div>
+						</footer>
+					</transition>
 				</div>
 
 				<br>
 
-				<div class="notification is-primary is-light hidden" id="notification-copied">
-					Copied to clipboard!
-				</div>
 			</div>
 		</div>
 	</section>
