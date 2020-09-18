@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/santiagoleiva/slack-banner-generator/issues"
   },
-  "homepage": "https://github.com/santiagoleiva/slack-banner-generator#readme"
+  "homepage": "https://github.com/santiagoleiva/slack-banner-generator#readme",
+  "dependencies": {
+    "grunt-cli": "^1.3.2"
+  }
 }
