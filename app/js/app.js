@@ -1,3 +1,9 @@
+var defaultBGChar = ".";
+var defaultTextChar = "#";
+
+var defaultBGEmoji = ":white_square:";
+var defaultTextEmoji = ":black_square:";
+
 new Vue({
     el: "#banner-app",
     data: {
@@ -12,8 +18,10 @@ new Vue({
 
             if (this.input) {
                 var input = " " + this.input;
-                Figlet.write(input, "default-font", function (output) {
+                Figlet.write(input, "hash-default-font", function (output) {
                     newOutput += output;
+                    newOutput = newOutput.replaceAll(defaultBGChar, defaultBGEmoji);
+                    newOutput = newOutput.replaceAll(defaultTextChar, defaultTextEmoji);
                 })
             }
 
@@ -28,7 +36,7 @@ new Vue({
                 console.error("Error copying selection");
             }
         },
-        closeCopiedMessage: function() {
+        closeCopiedMessage: function () {
             this.displayCopiedMessage = false;
         }
     }
