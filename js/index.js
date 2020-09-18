@@ -1,7 +1,12 @@
 $(document).ready(function () {
     $("#input-text").keyup(function () {
-        var value = " " + $(this).val();
-        $("#output").figlet(value);
+        if ($(this).val()) {
+            $("#output").figlet(" " + $(this).val());
+            $("#btn-copy").attr("disabled", false);
+        } else {
+            $("#output").html("");
+            $("#btn-copy").attr("disabled", true);
+        }
     });
 
     $("#btn-copy").click(function () {
